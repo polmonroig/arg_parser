@@ -4,7 +4,7 @@
  * */
 #include <iostream>
 
-#include "include/arg_parser.h"
+#include <arg_parser>
 
 
 int main(int argc, char* argv[]){
@@ -23,7 +23,7 @@ int main(int argc, char* argv[]){
     }
     // if an argument named readOnly was found
     // get the argument seed
-    // note: seed is a required arument so we don't need to call find first 
+    // note: seed is a required arument so we don't need to call find first
     if(parser.find("readOnly"))
         std::cout << "Seed: " << parser.get("seed") << std::endl;
 
