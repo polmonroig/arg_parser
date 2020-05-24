@@ -15,12 +15,18 @@ int main(int argc, char* argv[]){
     parser.addArgument(ap::Argument("readOnly", 'r', "Specifies a readonly file", ap::ArgumentType::Boolean, true));
     // parse the arguments when you need to
     auto parsed = parser.parse(argc, argv);
+    // if help asked print it
+    if(parser.find("help")){
+        std::cerr << parser.usage("example");
+        return EXIT_SUCCESS;
+    }
     // if there was an error, print the log saved in
     // the parser and exit the program
     if(!parsed){
         std::cerr << parser.log();
         return EXIT_FAILURE;
     }
+
     // if an argument named readOnly was found
     // get the argument seed
     // note: seed is a required arument so we don't need to call find first

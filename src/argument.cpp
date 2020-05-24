@@ -14,7 +14,6 @@ Argument::Argument(std::string const& n, char s, std::string const& d, ArgumentT
     description = d;
     type = t;
     required = r;
-
 }
 
 std::string Argument::getName() const{
@@ -45,6 +44,10 @@ bool Argument::typeCheck(std::string const& value) const{
             return value.empty();
         break;
     }
+}
+
+std::string Argument::getDescription() const{
+    return description;
 }
 
 /***************

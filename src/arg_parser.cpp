@@ -8,6 +8,10 @@ using namespace ap;
  *  PUBLIC
  ***********/
 
+ArgParser::ArgParser(){
+    args.push_back(Argument("help", 'h', "show help for arguments", ArgumentType::Boolean, false));
+}
+
 void ArgParser::addArgument(Argument const& arg){
     args.push_back(arg);
 }
@@ -39,6 +43,13 @@ void ArgParser::setPrefix(char c){
     prefix = c;
 }
 
+std::string ArgParser::usage(std::string const& prog) const{
+    std::string u = "\nusage: " + prog + " [options]\n";
+    for(auto const& a : args){
+        u += a.getName() + " ("+ a.getShorthand() +") " + a.getDescription() + "\n";
+    }
+    return u + "\n";
+}
 
 
 

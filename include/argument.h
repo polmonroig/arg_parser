@@ -21,13 +21,14 @@ namespace ap{
         public:
 
             Argument() = default;
-            
+
             Argument(std::string const& name, char shorthand,
                     std::string const& description,
                     ArgumentType const& t, bool required);
 
             std::string getName() const;
             std::string getShorthand() const;
+            std::string getDescription() const; 
             bool isRequired() const;
             bool typeCheck(std::string const& value) const;
 

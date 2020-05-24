@@ -14,6 +14,7 @@ namespace ap{
 
         public:
 
+            ArgParser(); 
 
             void addArgument(Argument const& arg);
 
@@ -26,6 +27,8 @@ namespace ap{
             std::string get(std::string const& arg) const;
 
             void setPrefix(char c);
+
+            std::string usage(std::string const& prog) const;
 
         private:
 
