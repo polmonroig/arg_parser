@@ -28,7 +28,8 @@ namespace ap{
 
             std::string getName() const;
             std::string getShorthand() const;
-            bool isRequired() const; 
+            bool isRequired() const;
+            bool typeCheck(std::string const& value) const; 
 
 
 

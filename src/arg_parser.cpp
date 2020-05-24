@@ -42,8 +42,8 @@ bool ArgParser::compareArguments(){
         auto sh = a.getShorthand();
         it = argumentReference.find(name);
         if(it != argumentReference.end()){
-            if(!a.typeCheck(*it)){
-                errorLog += "Incorrect type found for argument " + name + "\n"; 
+            if(!a.typeCheck(it->second)){
+                errorLog += "Incorrect type found for argument " + name + "\n";
             }
         }
         else if(a.isRequired()){
