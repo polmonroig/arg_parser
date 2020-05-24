@@ -8,7 +8,9 @@ boolean. Specifying the arguments to the parser ensures that a type
 check is enforced. Each argument must be passed with a single dash
 or a double dash, a single dash requires the user to write the
 shorthand for the argument as a single character, otherwise the complete
-name is required.
+name is required. If you wish to change the dash for another character,
+it is as easy as calling the  `void setPrefix(char c)` function
+
 To pass add an argument is as simple as creating it and adding its
 properties, such as its name, shorthand, description, type and if
 it is required or not.
