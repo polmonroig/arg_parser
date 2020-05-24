@@ -20,6 +20,10 @@ it is required or not.
 To parse the arguments the `parser.parse(argc, argv)` function must be used, this function returns a boolean specifying if the parsing was
 completed succesfully; in case it wasn't an error log can be queried.
 
+Parameter passing can be specified in two ways
+`program --flag` in case it is a boolean
+`program --flag=323 -v=ok` in case it has a value 
+
 A complete example of the usage of the argument parser is in the main.cpp
 file.
 
