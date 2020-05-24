@@ -10,8 +10,8 @@ INCLUDE = include/*.h
 FILES = $(SRC) $(INCLUDE)
 
 
-all: main
+all: example
 
 
-main: $(FILES)
+example: $(FILES)
 	$(GCC) $(SRC) -o main
