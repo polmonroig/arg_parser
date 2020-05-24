@@ -45,14 +45,27 @@ std::string ArgParser::get(std::string const& arg) const{
  ***********/
 
 bool ArgParser::compareArguments(){
+    if(args.size() < argumentReference.size())
+        errorLog += "Passing too many arguments\n";
     for(auto const& a : args){
         auto name = a.getName();
         auto it = argumentReference.find(name);
         auto sh = a.getShorthand();
         it = argumentReference.find(name);
+        auto sit = argumentReference.find(sh);
         if(it != argumentReference.end()){
             if(!a.typeCheck(it->second)){
                 errorLog += "Incorrect type found for argument " + name + "\n";
+            }
+        }
+        else if(sit != argumentReference.end()){
+            if(!a.typeCheck(sit->second)){
+                errorLog += "Incorrect type found for argument " + name + "\n";
+            }
+            if(sit != argumentReference.end()){
+                auto val = sit->second;
+                argumentReference.erase(sit);
+                argumentReference.insert({name,  val});
             }
         }
         else if(a.isRequired()){

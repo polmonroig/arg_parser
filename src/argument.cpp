@@ -21,9 +21,8 @@ std::string Argument::getName() const{
     return name;
 }
 
-
 std::string Argument::getShorthand() const{
-    return std::to_string(shorthand);
+    return std::string(1, shorthand);
 }
 
 
