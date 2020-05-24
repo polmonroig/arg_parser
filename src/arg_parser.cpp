@@ -35,6 +35,10 @@ std::string ArgParser::get(std::string const& arg) const{
     return argumentReference.find(arg)->second;
 }
 
+void ArgParser::setPrefix(char c){
+    prefix = c;
+}
+
 
 
 
@@ -76,13 +80,13 @@ bool ArgParser::compareArguments(){
 
 bool ArgParser::parseArg(std::string const& arg){
     if(arg.size() < MIN_ARG_SIZE)return false;
-    if(arg[0] == DASH && arg[1] == DASH){ // completename
+    if(arg[0] == prefix && arg[1] == prefix){ // completename
         auto name = getName(arg);
         auto value = getValue(arg);
         argumentReference.insert({name, value});
         return true;
     }
-    else if(arg[0] == DASH){ // shorthand
+    else if(arg[0] == prefix){ // shorthand
         char shorthand = arg[1];
         auto value = getValue(arg);
         argumentReference.insert({std::to_string(shorthand), value});

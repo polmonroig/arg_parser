@@ -25,6 +25,8 @@ namespace ap{
 
             std::string get(std::string const& arg) const;
 
+            void setPrefix(char c);
+
         private:
 
 
@@ -39,7 +41,7 @@ namespace ap{
             static std::string getName(std::string const& arg);
 
             static const unsigned int MIN_ARG_SIZE = 2;
-            static const char DASH = '-';
+            char prefix = '-';
 
 
 

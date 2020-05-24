@@ -21,7 +21,7 @@ namespace ap{
         public:
 
             Argument() = default;
-
+            
             Argument(std::string const& name, char shorthand,
                     std::string const& description,
                     ArgumentType const& t, bool required);
