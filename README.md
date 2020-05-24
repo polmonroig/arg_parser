@@ -22,3 +22,7 @@ completed succesfully; in case it wasn't an error log can be queried.
 
 A complete example of the usage of the argument parser is in the main.cpp
 file.
+
+# Installation
+The library is installed as a shared library, using
+`sudo make install`
