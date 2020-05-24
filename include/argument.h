@@ -29,12 +29,15 @@ namespace ap{
             std::string getName() const;
             std::string getShorthand() const;
             bool isRequired() const;
-            bool typeCheck(std::string const& value) const; 
+            bool typeCheck(std::string const& value) const;
 
 
 
         private:
 
+            static bool checkInteger(std::string const& value);
+            static bool checkReal(std::string const& value);
+            static bool isInteger(char c);
 
             std::string name;
             char shorthand;

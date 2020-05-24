@@ -32,7 +32,7 @@ bool Argument::isRequired() const{
 }
 
 bool Argument::typeCheck(std::string const& value) const{
-    switch (t) {
+    switch (type) {
         case ArgumentType::String:
             return !value.empty();
         break;
@@ -56,7 +56,7 @@ bool Argument::checkInteger(std::string const& value){
     for(auto const& c : value){
         if(!isInteger(c))return false;
     }
-    return true; 
+    return true;
 }
 
 bool Argument::checkReal(std::string const& value){
@@ -66,4 +66,9 @@ bool Argument::checkReal(std::string const& value){
         else if(c == '.' || !isInteger(c))return false; // too many dots or not int
     }
     return true;
+}
+
+bool Argument::isInteger(char c){
+    int a = int(c);
+    return a >= 48 && a <= 57;
 }

@@ -28,6 +28,7 @@ namespace ap{
             bool compareArguments();
             bool parseArg(std::string const& arg);
             static std::string getValue(std::string const& arg);
+            static std::string getName(std::string const& arg);
 
             static const unsigned int MIN_ARG_SIZE = 2;
             static const char DASH = '-';
