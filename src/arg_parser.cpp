@@ -29,6 +29,15 @@ std::string ArgParser::log() const{
 }
 
 
+bool ArgParser::find(std::string const& arg) const{
+    return argumentReference.find(arg) != argumentReference.end();
+}
+
+std::string ArgParser::get(std::string const& arg) const{
+    return argumentReference.find(arg)->second;
+}
+
+
 
 
 /**********
@@ -79,7 +88,7 @@ std::string ArgParser::getName(std::string const& arg){
         if(arg[i] == '=')isEqual = true;
         else value += arg[i];
     }
-    return value; 
+    return value;
 }
 
 std::string ArgParser::getValue(std::string const& arg){

@@ -21,7 +21,9 @@ namespace ap{
 
             std::string log() const;
 
+            bool find(std::string const& arg) const;
 
+            std::string get(std::string const& arg) const; 
 
         private:
 
