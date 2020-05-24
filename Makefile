@@ -1,17 +1,23 @@
 STD = -std=c++17
-FLAGS = -Wall -Wextra
+WARN = -Wall -Wextra
 OPT = -O2
-GCC = g++ $(OPT) $(STD) $(FLAGS)
+GCC = g++ $(OPT) $(STD) $(WARN)
+VERSION = 1.0
+FLAGS = -shared -Wl,-soname,
+LIB = libaparser.so$(VERSION)
 
-
-
-SRC = src/*.cpp main.cpp
+SRC = src/*.cpp
 INCLUDE = include/*.h
-FILES = $(SRC) $(INCLUDE)
+FILES = $(SRC) $(INCLUDE) main.cpp
+INSTALL_FILES = $(SRC) $(INCLUDE)
 
-
-all: example
-
+install: $(FILES)
+	$(GCC) -fPIC -c $(INSTALL_FILES)
+	$(GCC) $(FLAGS) $(LIB) -o $(LIB) *.o
 
 example: $(FILES)
 	$(GCC) $(SRC) -o main
+
+
+clean:
+	rm -fr include/*.gch src/*.gch *.o 
