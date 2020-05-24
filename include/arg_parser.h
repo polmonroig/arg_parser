@@ -23,9 +23,15 @@ namespace ap{
 
             bool find(std::string const& arg) const;
 
-            std::string get(std::string const& arg) const; 
+            std::string get(std::string const& arg) const;
 
         private:
+
+
+            void logIncorrectFormat(std::string const& a);
+            void logIncorrectType(Argument const& a);
+            void logMissingArgument(Argument const& a);
+            void logTooManyArguments();
 
             bool compareArguments();
             bool parseArg(std::string const& arg);

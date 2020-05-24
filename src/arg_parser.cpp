@@ -15,9 +15,7 @@ void ArgParser::addArgument(Argument const& arg){
 bool ArgParser::parse(int argc, char* argv[]){
     for(auto i = 1; i < argc; ++i){
         if(!parseArg(argv[i])){
-            errorLog += "Incorrect argument format found at ";
-            errorLog += argv[i];
-            errorLog += "\n";
+            logIncorrectFormat(argv[i]);
         }
     }
     return compareArguments();
@@ -46,7 +44,7 @@ std::string ArgParser::get(std::string const& arg) const{
 
 bool ArgParser::compareArguments(){
     if(args.size() < argumentReference.size())
-        errorLog += "Passing too many arguments\n";
+        logTooManyArguments();
     for(auto const& a : args){
         auto name = a.getName();
         auto it = argumentReference.find(name);
@@ -55,12 +53,12 @@ bool ArgParser::compareArguments(){
         auto sit = argumentReference.find(sh);
         if(it != argumentReference.end()){
             if(!a.typeCheck(it->second)){
-                errorLog += "Incorrect type found for argument " + name + "\n";
+                logIncorrectType(a);
             }
         }
         else if(sit != argumentReference.end()){
             if(!a.typeCheck(sit->second)){
-                errorLog += "Incorrect type found for argument " + name + "\n";
+                logIncorrectType(a);
             }
             if(sit != argumentReference.end()){
                 auto val = sit->second;
@@ -69,7 +67,7 @@ bool ArgParser::compareArguments(){
             }
         }
         else if(a.isRequired()){
-            errorLog += "Missing required argument " + name + "\n";
+            logMissingArgument(a);
         }
     }
     return errorLog.empty();
@@ -116,4 +114,22 @@ std::string ArgParser::getValue(std::string const& arg){
         }
     }
     return value;
+}
+
+
+
+void ArgParser::logIncorrectFormat(std::string const& a){
+    errorLog += "Incorrect argument format found at " + a + "\n";
+}
+
+void ArgParser::logIncorrectType(Argument const& a){
+    errorLog += "Incorrect type found for argument " + a.getName() + "\n";
+}
+
+void ArgParser::logMissingArgument(Argument const& a){
+    errorLog += "Missing required argument " + a.getName() + "\n";
+}
+
+void ArgParser::logTooManyArguments(){
+    errorLog += "Passing too many arguments\n";
 }
