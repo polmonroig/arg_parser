@@ -66,6 +66,7 @@ bool ArgParser::compareArguments(){
         auto sh = a.getShorthand();
         it = argumentReference.find(name);
         auto sit = argumentReference.find(sh);
+
         if(it != argumentReference.end()){
             if(!a.typeCheck(it->second)){
                 logIncorrectType(a);
@@ -75,11 +76,10 @@ bool ArgParser::compareArguments(){
             if(!a.typeCheck(sit->second)){
                 logIncorrectType(a);
             }
-            if(sit != argumentReference.end()){
-                auto val = sit->second;
-                argumentReference.erase(sit);
-                argumentReference.insert({name,  val});
-            }
+            auto val = sit->second;
+            argumentReference.erase(sit);
+            argumentReference.insert({name,  val});
+
         }
         else if(a.isRequired()){
             logMissingArgument(a);
@@ -100,7 +100,7 @@ bool ArgParser::parseArg(std::string const& arg){
     else if(arg[0] == prefix){ // shorthand
         char shorthand = arg[1];
         auto value = getValue(arg);
-        argumentReference.insert({std::to_string(shorthand), value});
+        argumentReference.insert({std::string(1, shorthand), value});
         return true;
     }
 
