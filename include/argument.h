@@ -1,3 +1,6 @@
+#ifndef ARGUMENT_H 
+#define ARGUMENT_H 
+
 #include <string>
 
 namespace ap{
