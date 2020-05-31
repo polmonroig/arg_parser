@@ -46,7 +46,7 @@ void ArgParser::setPrefix(char c){
 std::string ArgParser::usage(std::string const& prog) const{
     std::string u = "\nusage: " + prog + " [options]\n";
     for(auto const& a : args){
-        u += a.getName() + " ("+ a.getShorthand() +") " + a.getDescription() + "\n";
+        u += a.print();
     }
     return u + "\n";
 }

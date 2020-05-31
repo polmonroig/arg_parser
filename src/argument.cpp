@@ -42,6 +42,9 @@ bool Argument::typeCheck(std::string const& value) const{
         break;
         case ArgumentType::Boolean:
             return value.empty();
+        break; 
+        case ArgumentType::Enum:
+            return checkEnum(value); 
         break;
     }
 }
@@ -50,9 +53,33 @@ std::string Argument::getDescription() const{
     return description;
 }
 
+void Argument::addValue(std::string const& val){
+    values.push_back(val); 
+}
+
+std::string Argument::print() const{
+    if(type == ArgumentType::Enum){
+        std::string options = ""; 
+        for(auto const& v : values) options += v + ", ";  
+        return name + " (" + shorthand + ") " + description + " [" + options + "]" +  "\n"; 
+    }
+    else{
+        return name + " (" + shorthand + ") " + description + "\n"; 
+    }
+
+}
+
+
 /***************
  *   PRIVATE
  ***************/
+
+bool Argument::checkEnum(std::string const& value) const{ 
+    for(auto const& v : values){ 
+        if(v == value) return true; 
+    }
+    return false; 
+}
 
 bool Argument::checkInteger(std::string const& value){
     for(auto const& c : value){

@@ -1,7 +1,8 @@
-#ifndef ARGUMENT_H 
-#define ARGUMENT_H 
+#ifndef AP_ARGUMENT_H 
+#define AP_ARGUMENT_H 
 
 #include <string>
+#include <list>
 
 namespace ap{
 
@@ -11,8 +12,9 @@ namespace ap{
         String,
         Integer,
         Real,
-        Boolean
-    };;
+        Boolean,
+        Enum 
+    };
 
 
     /**
@@ -34,19 +36,29 @@ namespace ap{
             std::string getDescription() const; 
             bool isRequired() const;
             bool typeCheck(std::string const& value) const;
-
+            void addValue(std::string const& val); 
+            std::string print() const; 
 
 
         private:
 
+            bool checkEnum(std::string const& value) const; 
             static bool checkInteger(std::string const& value);
             static bool checkReal(std::string const& value);
             static bool isInteger(char c);
+            
 
+            /*Possible values that an argument can take, just for enums*/
+            std::list<std::string> values; 
+            /*Complete name of the argument*/
             std::string name;
+            /*Shorthand for the argument*/
             char shorthand;
+            /*Description of what the argument need to be*/
             std::string description;
+            /*Specifies the type of argument that must be enterd*/
             ArgumentType type;
+            /* Specifies if the argument is required as inpu*/
             bool required;
 
     };
@@ -55,3 +67,5 @@ namespace ap{
 
 
 }
+
+#endif 
